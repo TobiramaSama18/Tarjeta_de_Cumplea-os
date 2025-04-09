@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tarjeta de Cumpleaños Kawaii</title>
+  <link rel="stylesheet" href="stayle.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+<!-- Audio de fondo con YouTube -->
+<iframe id="backgroundMusic" 
+        src="https://www.youtube.com/embed/u-_0fkY9FhI?enablejsapi=1&autoplay=0&loop=1&playlist=u-_0fkY9FhI" 
+        frameborder="0" 
+        allow="autoplay" 
+        style="display: none;">
+</iframe>
+  
+  <!-- Botón para música -->
+  <button id="musicControl" class="music-btn">
+    <i class="fas fa-volume-up"></i>
+  </button>
+
+  <div class="stars"></div>
+  <div class="container">
+    <!-- Cajita de regalo con moño -->
+    <div id="boxContainer">
+      <div id="box">
+        <div class="ribbon"></div>
+        <div class="box-lid">
+          <span class="box-bow"></span>
+        </div>
+        <div class="sparkles">
+          <span class="sparkle"></span>
+          <span class="sparkle"></span>
+          <span class="sparkle"></span>
+        </div>
+        <span class="box-text">Abre tu regalo</span>
+      </div>
+    </div>
+    
+    <!-- Gatito y texto de cumpleaños -->
+    <div id="kittenContainer">
+      <div class="kitten-wrapper">
+        <img src="imagenes /7f596096-a9b9-47b0-a8aa-77b72d577214.jpeg" alt="Kitten">
+        <div class="hearts-container">
+          <i class="fas fa-heart heart"></i>
+          <i class="fas fa-heart heart"></i>
+          <i class="fas fa-heart heart"></i>
+        </div>
+      </div>
+      <div id="birthdayText" class="birthday-glow"></div>
+    </div>
+    
+    <!-- Tarjeta con fotos y mensaje -->
+    <div id="card">
+      <div class="card-decoration">
+        <span class="balloon"></span>
+        <span class="balloon"></span>
+        <span class="balloon"></span>
+      </div>
+      <h1>¡Feliz Cumpleaños, Hermanita! <i class="fas fa-birthday-cake"></i></h1>
+      <div class="divider">
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-heart"></i>
+      </div>
+      <p class="message">Se que hoy cumples 16 años aunque no pueda estar aya 
+        desde aca te envio un fuerte abrazo y un beso enorme, espero que el dia de hoy la pases
+        muy bien con mi madre sabes que te quiero un monton mi chuki ya estas grande y aunque no lo creas
+        siempre seras mi chiquita, espero que la vida te regale muchas cosas hermosas y que nunca te falte nada
+        te quiero un monton.
+      </p>
+      
+      <div class="photos">
+        <div class="photo-frame">
+          <img src="imagenes /35724710-9b30-4fde-aead-254deb284b9d.jpeg" alt="Foto 1">
+        </div>
+        <div class="photo-frame">
+          <img src="imagenes /6ad9165e-97bf-473a-933e-bd7e933dd6c3.jpeg" alt="Foto 2">
+        </div>
+        <div class="photo-frame">
+          <img src="imagenes /f79fa3bf-e2e0-4123-9c47-b4141be0dac0.jpeg" alt="Foto 3">
+        </div>
+      </div>
+      
+      <div class="confetti-container">
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  <script>
+    // Variables para elementos
+    const boxContainer = document.getElementById('boxContainer');
+    const box = document.getElementById('box');
+    const kittenContainer = document.getElementById('kittenContainer');
+    const birthdayText = document.getElementById('birthdayText');
+    const card = document.getElementById('card');
+    const musicControl = document.getElementById('musicControl');
+    const musicIcon = musicControl.querySelector('i');
+    let youtubePlayer;
+  
+    // Cargar la API de YouTube
+    function onYouTubeIframeAPIReady() {
+      youtubePlayer = new YT.Player('backgroundMusic', {
+        events: {
+          onReady: (event) => {
+            console.log("YouTube Player listo");
+          }
+        }
+      });
+    }
+  
+    // Control de música
+    musicControl.addEventListener('click', () => {
+      if (youtubePlayer) {
+        const playerState = youtubePlayer.getPlayerState();
+        if (playerState === YT.PlayerState.PAUSED || playerState === YT.PlayerState.ENDED) {
+          youtubePlayer.playVideo();
+          musicIcon.className = 'fas fa-volume-up';
+          musicControl.classList.add('active');
+        } else {
+          youtubePlayer.pauseVideo();
+          musicIcon.className = 'fas fa-volume-mute';
+          musicControl.classList.remove('active');
+        }
+      }
+    });
+  
+    // Mensaje que se escribirá con efecto typewriter
+    const mensaje = "¡Feliz Cumpleaños!";
+    let index = 0;
+  
+    // Función para efecto tipo máquina de escribir
+    function typeWriter() {
+      if (index < mensaje.length) {
+        birthdayText.innerHTML += mensaje.charAt(index);
+        index++;
+        setTimeout(typeWriter, 150);
+      } else {
+        // Una vez completado el mensaje, mostrar la carta
+        setTimeout(() => {
+          card.classList.add('show');
+          playConfettiAnimation();
+        }, 1000);
+      }
+    }
+  
+    // Al hacer clic en la cajita
+    boxContainer.addEventListener('click', () => {
+      // Intentar reproducir música con interacción del usuario
+      if (youtubePlayer) {
+        youtubePlayer.playVideo();
+      }
+  
+      // Añadimos la clase para animar la caja
+      box.classList.add('open');
+  
+      // Deshabilitar más clics
+      boxContainer.style.pointerEvents = 'none';
+  
+      // Luego de 800ms (fin de animación) ocultamos la caja y mostramos el gatito
+      setTimeout(() => {
+        boxContainer.style.display = 'none';
+        kittenContainer.classList.add('show');
+        // Inicia la animación de máquina de escribir
+        typeWriter();
+        // Activar los corazones
+        activateHearts();
+      }, 800);
+    });
+  
+    // Función para animar los corazones
+    function activateHearts() {
+      const hearts = document.querySelectorAll('.heart');
+      hearts.forEach((heart, index) => {
+        setTimeout(() => {
+          heart.classList.add('active');
+        }, index * 300);
+      });
+    }
+  
+    // Función para animación de confeti
+    function playConfettiAnimation() {
+      const confettis = document.querySelectorAll('.confetti');
+      confettis.forEach((confetti, index) => {
+        setTimeout(() => {
+          confetti.classList.add('falling');
+        }, index * 200);
+      });
+    }
+  
+    // Crear estrellas en el fondo
+    function createStars() {
+      const stars = document.querySelector('.stars');
+      for (let i = 0; i < 50; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        stars.appendChild(star);
+      }
+    }
+  
+    // Iniciar estrellas al cargar
+    window.onload = function() {
+      createStars();
+  
+      // Mostrar botón de música después de un retraso
+      setTimeout(() => {
+        musicControl.classList.add('visible');
+      }, 1500);
+    };
+  
+    // Cargar el script de la API de YouTube
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  </script>
+</body>
+</html>

@@ -1,0 +1,795 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    /* Fondo con gradiente más llamativo y tierno */
+    background: linear-gradient(135deg, #ffd1ff, #ffb8e7, #f9e9ff, #e0f5ff);
+    background-size: 400% 400%;
+    animation: gradient-bg 15s ease infinite;
+    font-family: 'Comic Sans MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+  }
+  
+  /* Animación del fondo */
+  @keyframes gradient-bg {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Burbujas flotantes en el fondo */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.3) 3px, transparent 10px),
+      radial-gradient(circle at 70% 40%, rgba(255, 255, 255, 0.3) 5px, transparent 12px),
+      radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.3) 7px, transparent 15px),
+      radial-gradient(circle at 60% 80%, rgba(255, 255, 255, 0.3) 4px, transparent 10px),
+      radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.3) 6px, transparent 12px);
+    z-index: -2;
+    animation: bubble-float 20s linear infinite;
+  }
+  
+  @keyframes bubble-float {
+    0% {
+      background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    }
+    100% {
+      background-position: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+    }
+  }
+  
+  /* Elementos decorativos kawaii en el fondo */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M10,0 L12,7 L19,7 L13,12 L16,19 L10,14 L4,19 L7,12 L1,7 L8,7 Z' fill='%23ffcce6' fill-opacity='0.2'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath d='M15,5 C15,5 13,8 10,8 C7,8 5,5 5,5 C5,5 7,2 10,2 C13,2 15,5 15,5 Z M25,5 C25,5 23,8 20,8 C17,8 15,5 15,5 C15,5 17,2 20,2 C23,2 25,5 25,5 Z M15,15 C15,12 17,10 20,10 C23,10 25,12 25,15 C25,18 23,20 20,20 C17,20 15,18 15,15 Z M5,15 C5,12 7,10 10,10 C13,10 15,12 15,15 C15,18 13,20 10,20 C7,20 5,18 5,15 Z M15,25 C15,25 13,28 10,28 C7,28 5,25 5,25 C5,25 7,22 10,22 C13,22 15,25 15,25 Z M25,25 C25,25 23,28 20,28 C17,28 15,25 15,25 C15,25 17,22 20,22 C23,22 25,25 25,25 Z' fill='%23c0f0ff' fill-opacity='0.2'/%3E%3C/svg%3E");
+    background-size: 60px 60px, 120px 120px;
+    z-index: -3;
+    opacity: 0.6;
+    animation: pattern-float 40s linear infinite;
+  }
+  
+  @keyframes pattern-float {
+    0% {
+      background-position: 0 0, 0 0;
+    }
+    100% {
+      background-position: 300px 300px, 600px 600px;
+    }
+  }
+  
+  .container {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2),
+                0 0 40px rgba(255, 182, 193, 0.2);
+    border: 3px dashed #ffb6c1;
+  }
+  
+  /* Decoración de bordes kawaii */
+  .container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 35px;
+    background: 
+      repeating-linear-gradient(45deg, 
+        rgba(255, 182, 193, 0.3) 0, 
+        rgba(255, 182, 193, 0.3) 10px, 
+        transparent 10px, 
+        transparent 20px);
+    z-index: -1;
+    animation: border-dance 3s linear infinite;
+  }
+  
+  @keyframes border-dance {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 40px 40px;
+    }
+  }
+  
+  /* Botón de música */
+  .music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff9bd2, #ff6bb8);
+    border: 3px solid #fff;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  
+  .music-btn.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .music-btn:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #ff6bb8, #ff419a);
+  }
+  
+  .music-btn.active {
+    animation: pulse-music 2s infinite;
+  }
+  
+  @keyframes pulse-music {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 15px rgba(255, 105, 180, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 105, 180, 0);
+    }
+  }
+  
+  /* Estrellas de fondo */
+  .stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  .star {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 4px 1px #ffc0cb;
+    animation: twinkle 3s infinite ease-in-out;
+  }
+  
+  @keyframes twinkle {
+    0%, 100% {
+      opacity: 0.2;
+      transform: scale(0.5);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Cajita de regalo kawaii */
+  #boxContainer {
+    position: relative;
+    top: 400px;
+    margin: 0 auto; 
+    width: 180px;
+    height: 180px;
+    cursor: pointer;
+    transition: transform 0.5s;
+    z-index: 10;
+  }
+  
+  #boxContainer:hover {
+    transform: scale(1.08);
+  }
+  
+  #box {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffcdd2, #f8bbd0);
+    border: 5px solid #f48fb1;
+    border-radius: 20px;
+    position: relative;
+    overflow: visible;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2),
+                0 0 20px rgba(255, 105, 180, 0.3);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: float 3s infinite ease-in-out;
+  }
+  
+  /* Animación flotante */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Decoración de la caja */
+  .ribbon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 20px;
+    height: 100%;
+    background-color: #f06292;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  
+  .box-lid {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #f8bbd0;
+    border: 5px solid #f48fb1;
+    border-bottom: none;
+    border-radius: 15px 15px 0 0;
+    transform-origin: bottom;
+    transition: transform 0.5s ease;
+  }
+  
+  .box-bow {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 20px;
+    background-color: #f06292;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #f06292;
+    z-index: 3;
+  }
+  
+  .box-bow:before, .box-bow:after {
+    content: '';
+    position: absolute;
+    width: 45px;
+    height: 25px;
+    background: #f06292;
+    border-radius: 50%;
+  }
+  
+  .box-bow:before {
+    left: -20px;
+    transform: rotate(-30deg);
+  }
+  
+  .box-bow:after {
+    right: -20px;
+    transform: rotate(30deg);
+  }
+  
+  /* Brillos */
+  .sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  .sparkle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: transparent;
+  }
+  
+  .sparkle:before {
+    content: '✨';
+    position: absolute;
+    font-size: 20px;
+    color: #ffeb3b;
+    animation: sparkle 2s infinite;
+  }
+  
+  .sparkle:nth-child(1) {
+    top: 20%;
+    left: 15%;
+  }
+  
+  .sparkle:nth-child(2) {
+    top: 70%;
+    left: 85%;
+  }
+  
+  .sparkle:nth-child(3) {
+    top: 40%;
+    left: 50%;
+  }
+  
+  @keyframes sparkle {
+    0%, 100% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+  
+  .box-text {
+    position: absolute;
+    width: 100%;
+    bottom: 15px;
+    font-size: 1.2em;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    z-index: 5;
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+  
+  /* Animación al abrir la caja */
+  #box.open {
+    transform: scale(1.2);
+    animation: shake 0.8s ease;
+  }
+  
+  #box.open .box-lid {
+    transform: rotateX(160deg);
+  }
+  
+  @keyframes shake {
+    0%, 100% {
+      transform: rotate(0) scale(1.2);
+    }
+    25% {
+      transform: rotate(-5deg) scale(1.2);
+    }
+    50% {
+      transform: rotate(0) scale(1.2);
+    }
+    75% {
+      transform: rotate(5deg) scale(1.2);
+    }
+  }
+  
+  /* Contenedor del gatito */
+  #kittenContainer {
+    margin-top: 20px;
+    position: relative;
+    top: 150px;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    transform: scale(0.8);
+  }
+  
+  #kittenContainer.show {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .kitten-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  #kittenContainer img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid #f8bbd0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2),
+                0 0 0 15px rgba(255, 192, 203, 0.2);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  #kittenContainer img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Corazones flotantes */
+  .hearts-container {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .heart {
+    color: #ff4081;
+    font-size: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+  }
+  
+  .heart.active {
+    font-size: 24px;
+    opacity: 1;
+    transform: translateY(0);
+    animation: floating 3s infinite ease-in-out;
+  }
+  
+  @keyframes floating {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  #birthdayText {
+    margin-top: 15px;
+    font-size: 2.2em;
+    color: #ff4081;
+    min-height: 50px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .birthday-glow {
+    animation: textGlow 2s infinite;
+  }
+  
+  @keyframes textGlow {
+    0%, 100% {
+      text-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
+    }
+    50% {
+      text-shadow: 0 0 20px rgba(255, 64, 129, 0.8), 0 0 30px rgba(255, 64, 129, 0.5);
+    }
+  }
+  
+  /* Tarjeta (carta) */
+  #card {
+    background: linear-gradient(135deg, #ffffff, #fffbff);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    margin-top: 30px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    top: 130px;
+    overflow: hidden;
+    border: 5px solid #f8bbd0;
+  }
+  
+  #card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(135deg, transparent 20px, rgba(255, 230, 240, 0.3) 20px, transparent 40px),
+      linear-gradient(225deg, transparent 20px, rgba(230, 255, 250, 0.3) 20px, transparent 40px);
+    background-size: 60px 60px;
+    z-index: -1;
+  }
+  
+  #card.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Decoraciones de la tarjeta */
+  .card-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  .balloon {
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    background: #ffb3ba;
+    border-radius: 50%;
+    animation: balloonFloat 5s infinite ease-in-out;
+  }
+  
+  .balloon:before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 50px;
+    background: #aaa;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .balloon:nth-child(1) {
+    top: 20px;
+    left: 20px;
+    background: #f8bbf8;
+    animation-delay: 0.5s;
+  }
+  
+  .balloon:nth-child(2) {
+    top: 30px;
+    right: 20px;
+    background: #bbf8f8;
+    animation-delay: 1s;
+  }
+  
+  .balloon:nth-child(3) {
+    top: 10px;
+    left: 50%;
+    background: #f8e8bb;
+    animation-delay: 1.5s;
+  }
+  
+  @keyframes balloonFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+  
+  #card h1 {
+    color: #ec407a;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(90deg, #ff4d94, #ff85c2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.15));
+  }
+  
+  .divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+  }
+  
+  .divider i {
+    color: #f48fb1;
+    font-size: 16px;
+    margin: 0 10px;
+    animation: color-change 3s infinite;
+  }
+  
+  @keyframes color-change {
+    0% { color: #f48fb1; }
+    33% { color: #ff85c2; }
+    66% { color: #ff4d94; }
+    100% { color: #f48fb1; }
+  }
+  
+  .message {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    padding: 0 10px;
+    background-color: rgba(255, 249, 255, 0.6);
+    border-radius: 15px;
+    padding: 15px;
+    border: 1px dashed #ffc1e3;
+  }
+  
+  .photos {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  .photo-frame {
+    position: relative;
+    padding: 8px;
+    background: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transform: rotate(-3deg);
+    transition: all 0.3s ease;
+    border: 2px solid #f8bbd0;
+  }
+  
+  .photo-frame:nth-child(2) {
+    transform: rotate(3deg);
+  }
+  
+  .photo-frame:nth-child(3) {
+    transform: rotate(-5deg);
+  }
+  
+  .photo-frame:hover {
+    transform: rotate(0) scale(1.1);
+    z-index: 10;
+  }
+  
+  .photo-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 50%);
+    z-index: 1;
+  }
+  
+  .photos img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: all 0.3s;
+    position: relative;
+    z-index: 0;
+  }
+  
+  /* Confetti */
+  .confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #f48fb1;
+    opacity: 0;
+    top: -20px;
+  }
+  
+  .confetti:nth-child(1) {
+    left: 10%;
+    background: #f06292;
+  }
+  
+  .confetti:nth-child(2) {
+    left: 20%;
+    background: #ffeb3b;
+    width: 8px;
+    height: 8px;
+  }
+  
+  .confetti:nth-child(3) {
+    left: 30%;
+    background: #90caf9;
+    width: 12px;
+    height: 12px;
+  }
+  
+  .confetti:nth-child(4) {
+    left: 60%;
+    background: #a5d6a7;
+  }
+  
+  .confetti:nth-child(5) {
+    left: 70%;
+    background: #ce93d8;
+    width: 15px;
+    height: 15px;
+  }
+  
+  .confetti:nth-child(6) {
+    left: 85%;
+    background: #ffab91;
+    width: 10px;
+    height: 10px;
+  }
+  
+  .confetti:nth-child(7) {
+    left: 95%;
+    background: #81d4fa;
+    width: 8px;
+    height: 8px;
+  }
+  
+  .confetti.falling {
+    opacity: 0.7;
+    animation: falling 4s linear;
+  }
+  
+  @keyframes falling {
+    0% {
+      top: -20px;
+      transform: rotate(0);
+    }
+    100% {
+      top: 100%;
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .photo-frame {
+      padding: 5px;
+    }
+    
+    .photos img {
+      width: 80px;
+      height: 80px;
+    }
+    
+    #card h1 {
+      font-size: 1.5em;
+    }
+    
+    .message {
+      font-size: 1em;
+    }
+    
+    .music-btn {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+      top: 10px;
+      right: 10px;
+    }
+  }

@@ -1,0 +1,19 @@
+{
+  "name": "tarjeta-cumpleanos",
+  "version": "1.0.0",
+  "description": "Tarjeta de cumpleaños kawaii",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "keywords": [],
+  "author": "ADRIAN Mr_Robot",
+  "license": "ISC",
+  "type": "commonjs"
+}
